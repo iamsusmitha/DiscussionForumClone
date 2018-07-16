@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load urlify %}
+{% load crispy_forms_tags %}
+
+
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
+
+
+ {% block post_detail_link %}
+  <li><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a></li>
+  {% endblock %}
+
+
+
+{% block content %}
+<div class='col-sm-9 col-sm-offset-0.1'>
+        <h1 style="color: chocolate;">{{ title }}</h1>
+            
+         
+        <hr/>
+        <h3 style="color:chocolate;">Question Description:</h3>
+    {% if instance.image %}
+    <img id ="all-img" style="width: 100%;" src='{{ instance.image.url }}' class='img-responsive' />
+    {% endif %}
+
+<!-- {% if instance.read_time|time:"i" <= "01" %} < 1 minute {% else %}{{ instance.read_time|time:"i" }} minutes {% endif %} -->
+
+
+
+<div class='row'>
+<div class='col-sm-12 '>
+
+   <div class='post-detail-item'><p style="color:cornflowerblue ;font-family: "Times New Roman", Times, serif;">{{ instance.get_markdown }}</p></div>
+
+    <hr/>
+    {% if instance.user %}
+<p>Asked By: {{ instance.user }} </p>  <p>{{ instance.publish }}</p>
+{% endif %}
+{% if instance.user == current_user or instance.user.is_authenticated == current_user %}
+                <div class='col-sm-9-h2'>
+        <form class='inner1' action="edit/" method="get">
+		    <button class='btn btn-default' type='submit'>Edit Question</button>
+            
+		</form>
+        <form class='inner2' action="delete/" method="get">
+		    <button class='btn btn-default' type='submit'>Delete Question</button>
+            
+		</form>
+    </div>
+{% endif %}
+<hr/>
+    <br/>
+
+    <div>
+
+        <p class='lead' style="color:chocolate;">All Answers</p>
+        
+        
+
+        {% for comment in comments %}
+            
+        <blockquote>
+          <p style="color:cornflowerblue ;">{{ comment.content }}</p>
+          <footer>Answered By {{ comment.user }} -- {{ comment.timestamp|timesince }} ago | {% if comment.children.count > 0 %}{{ comment.children.count }} Comment{% if comment.children.count > 1 %}s{% endif %} | {% endif %} <a class='comment-reply-btn' href='#'>Comment</a> | <a class='' href='{{ comment.get_absolute_url }}'>View All Replies To This Comment</a></footer>
+          <div class='comment-reply'>
+              {% for child_comment in comment.children %}
+                <blockquote>
+                <p style="color:cornflowerblue ;">{{ child_comment.content }}</p>
+                <footer>Answered By {{ child_comment.user }} -- {{ child_comment.timestamp|timesince }} ago</footer>
+                </blockquote>
+             {% endfor %}
+             {% if request.user.is_authenticated %}
+            <form method="POST" action="."> {% csrf_token %}
+                {{ comment_form|crispy }}
+                <input type='hidden' name='parent_id' value='{{ comment.id }}'>
+                <input type='submit' value='Add Comment' class='btn btn-default'>
+            </form>
+            {% else %}
+        <p>You must login to answer </p>
+        {% endif %}
+        </div>
+
+        </blockquote>
+
+        <hr/>
+        {% endfor %}
+
+        <h3 style="color:chocolate;">Post Your Answer</h3>
+
+        {% if request.user.is_authenticated %}
+        <form method="POST" action="."> {% csrf_token %}
+            {{ comment_form|crispy }}
+            <input type='submit' value='Post Answer' class='btn btn-default'>
+        </form>
+        {% else %}
+        <p>You must login to answer </p>
+        {% endif %}
+        <hr/>
+    </div>
+
+
+
+
+</div>
+</div>
+</div>
+
+
+{% endblock content %}

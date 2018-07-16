@@ -1,0 +1,26 @@
+h1 {
+    color: #777777;
+}
+
+.wmd-panel{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.comment-reply{
+    display:none;
+}
+
+.col-sm-9-h2{
+    float:middle;
+    text-align:center;
+    inline:true;
+}
+.inner1{
+	display: inline-block;
+    padding-right:2em;
+}
+.inner2{
+	display: inline-block;
+    padding-left:2em;
+}
