@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+
 
 {% block head_extra %} 
 {{ form.media }}
@@ -9,6 +9,7 @@
 
 
 {% block content %}
+{% load crispy_forms_tags %}
 <div class='col-sm-6'>
 <h1>Preview</h1>
 <hr/>
@@ -18,7 +19,7 @@
 </div>
 </div>
 <div class='col-sm-6'>
-<h1>Form</h1>
+<h1>Ask Question</h1>
 <hr/>
 
 <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
