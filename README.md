@@ -4,7 +4,7 @@
 
 DiscussionForumClone (A Question-Answer Forum) is an extended look at building a modern blog with the Django Framework while leveraging other technologies such as jQuery, Markdown, Bootstrap, HTML ans CSS.
 
-##### Project Overview : 
+##### Project Overview : https://www.youtube.com/watch?v=yidkwVbpd2I
                           
 ##### Project Link : https://discussion-forum-clone.herokuapp.com/
 
