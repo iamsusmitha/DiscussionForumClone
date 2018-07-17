@@ -68,7 +68,7 @@ fjs.parentNode.insertBefore(js, fjs);
         <li class='pull-right'><a href='{% url "login" %}'>Login</a></li>
         {% else %}
         <li class='pull-right'><a href='{% url "logout" %}'>Logout</a></li>
-        <li class='pull-right'><a href='{% url "logout" %}'>{{request.user}}</a></li>
+        <li class='pull-right'>{{request.user}}</li>
         {% endif %}
     </ol>
     
