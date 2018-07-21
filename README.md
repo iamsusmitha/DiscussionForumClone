@@ -25,7 +25,7 @@ DiscussionForumClone (A Question-Answer Forum) is an extended look at building a
                
    Make sure pip is already installed in your machine before you run the above command
                   
-   **Note** : _For windows, if you have any permission issues during installation rum the Command Prompt or Windows Power Shell in administrator mode (Start -> (cmd or Windows Power Shell) -> right click -> Run as administrator)_
+   **Note** : _For windows, if you have any permission issues during installation run the Command Prompt or Windows Power Shell in administrator mode (Start -> (cmd or Windows Power Shell) -> right click -> Run as administrator)_
                  
                  
 **Step - 4** : To make project run in your local machine run the below commands step by step
